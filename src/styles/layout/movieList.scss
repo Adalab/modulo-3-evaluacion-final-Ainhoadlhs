@@ -1,0 +1,13 @@
+.movie {
+    &__message{
+        &--notFound{
+            font-size: 1.5rem;
+            color: red;
+        }
+    }
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

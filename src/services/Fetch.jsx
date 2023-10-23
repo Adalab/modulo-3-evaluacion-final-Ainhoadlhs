@@ -1,32 +1,20 @@
-import React, { useEffect, useState } from 'react';
+const getDataFromAPI = () => {
+    return fetch('https://owen-wilson-wow-api.onrender.com/wows/random?results=50')
+    .then((response) => response.json())
+    .then((data) => {
+    const cleanData = data.map((data, index) => {
+        return {
+            id: index,
+            movie: data.movie,
+            year: data.year,
+            director: data.director,
+            fullLine: data.full_line,
+            poster: data.poster,
+            audio: data.audio,
+        };
+    });
+        return cleanData;
+    });
+};
 
-const Fetch = () => {
-    const [cleanData, setCleanData] = useState([]);
-
-    useEffect(() => {
-        fetch('https://owen-wilson-wow-api.onrender.com/wows/random?results=50')
-        .then((response) => response.json())
-        .then((data) => {
-            const cleanData = data.results.map((item, index) => {
-                return {
-                    movie: item.movie,
-                    year: item.year,
-                    director: item.director,
-                    fullLine: item.full_line,
-                    poster: item.poster,
-                    audio: item.audio,
-                    id: index,  
-                };
-            });
-            setCleanData(cleanData);
-        });
-    }, []);
-
-    return (
-        <div>
-            
-        </div>
-    );
-}
-
-export default Fetch;
+export default getDataFromAPI;
