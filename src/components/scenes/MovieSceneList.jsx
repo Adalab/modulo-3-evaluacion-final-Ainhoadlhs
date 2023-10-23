@@ -5,7 +5,7 @@ import '../../styles/layout/movieList.scss'
 
 const MovieSceneList = (props) => {
     if (props.movies.length === 0) {
-        return <p className="movie__message--notFound">No movie matches `{props.movieSearch}`. Try again!</p>;
+        return <p className="movie__message--notFound">No movie matches. Try again!</p>;
     } else {
         const movieInfo = props.movies.map((item) =>{
             return (

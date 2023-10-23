@@ -1,49 +1,38 @@
-
 import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, matchPath, Link } from 'react-router-dom';
-
-
-import Fetch from '../services/Fetch';
 import LocalStorage from '../services/LocalStorage';
-
 import Header from './Header';
 import Filters from './filters/Filters';
 import MovieSceneList from './scenes/MovieSceneList';
 import MovieSceneDetail from './scenes/MovieSceneDetail';
+import getDataFromAPI from '../services/Fetch';
 
 function App() {
-
-  //Constantes de estado
-
-  const [movieData, setMovieData] = useState(LocalStorage.get('movies', []) || []);
-  const [movieSearch, setMovieSearch] = useState ('');
+  const [movieData, setMovieData] = useState(LocalStorage.get('movies') || []);
+  const [movieSearch, setMovieSearch] = useState('');
   const [filterYear, setFilterYear] = useState('all');
 
-  // UseEffect
   useEffect(() => {
     if (movieData.length === 0) {
-      Fetch().then((cleanData) => {
+      getDataFromAPI().then((cleanData) => {
         setMovieData(cleanData);
-        LocalStorage.set("movies", cleanData);
+        LocalStorage.set('movies', cleanData);
       });
     }
   }, [movieData.length]);
-
   // Filtro
-  const filters = movieData.filter((item) => {
-    return movieSearch === '' ? true : item.movie.toLowerCase().includes(movieSearch.toLowerCase());
-  }).filter ((item) => {
-    if (filterYear === 'all') {
-      return true; 
-    } else {
-      return filterYear.includes(item.year.toString());
-    }
+  const sortedMovies = [...movieData].sort((a, b) => a.movie.localeCompare(b.movie));
+  const filters = sortedMovies.filter((item) => {
+    const yearMatch = filterYear === 'all' || item.year.toString() === filterYear;
+    const movieMatch = item.movie.toLowerCase().includes(movieSearch.toLowerCase());
+    return yearMatch && movieMatch;
   });
 
   // Funciones
   const getYear = () => {
     const years = movieData.map((item) => item.year);
-    return [...new Set(years)];
+    const sortedYears = [...new Set(years)].sort((a, b) => a - b);
+    return sortedYears;
   };
 
   const handleMovieInput = (value) => {
@@ -69,11 +58,11 @@ function App() {
           <Route path='/' element={
             <>
             <Filters 
-            movieValue = {movieSearch}
-            yearValue = {filterYear}
-            years = {getYear}
-            handleMovie = {handleMovieInput}
-            handleYear = {handleYearInput}
+            movieSearch = {movieSearch}
+            filterYear = {filterYear}
+            getYear = {getYear}
+            handleMovieInput = {handleMovieInput}
+            handleYearInput = {handleYearInput}
             />
             <MovieSceneList movies={filters} movieValue ={movieSearch} />
             </>}/>
@@ -81,11 +70,16 @@ function App() {
             path="/movie/:id"
             element={
               <>
-                <MovieSceneDetail item={clickedMovie} />
-                <Link to="/">Back</Link>
-              </>
+              {clickedMovie ? (
+                <>
+                  <MovieSceneDetail item={clickedMovie} />
+                  <Link to="/">Back</Link>
+                </>
+              ) : ( <div>Not found</div> 
+              )}
+                </>
             }
-          />
+            />
         </Routes>
       </main>
     </>

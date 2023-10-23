@@ -1,37 +1,34 @@
 import PropTypes from 'prop-types';
-
 import FilterByMovie from './FilterByMovie';
 import FilterByYear from './FilterByYear';
 
-const Filters = (props) => {
+const Filters = ({getYear, movieSearch, filterYear, handleMovieInput, handleYearInput}) => {
     const handleSubmit = (ev) => {
         ev.preventDefault();
     }
-    const years = Array.isArray(props.years) ? props.years : [];
+    const years = getYear();
     return (
         <form 
         className='form'
         onSubmit={handleSubmit}>
             <FilterByMovie 
-                handleMovie = {props.handleMovie}
-                movieValue = {props.movieValue}
+                handleMovieInput = {handleMovieInput}
+                movieSearch = {movieSearch}
             />
             <FilterByYear 
                 years={years} 
-                handleYear={props.handleYear} 
-                yearValue={props.yearValue}
+                handleYearInput={handleYearInput} 
+                filterYear={filterYear}
             />
         </form>
     );
 };
-
 Filters.propTypes = {
-    movieValue: PropTypes.string.isRequired,
-    yearValue: PropTypes.string.isRequired,
-    years: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.func]).isRequired,
-    handleMovie: PropTypes.func.isRequired,
-    handleYear: PropTypes.func.isRequired,
+    getYear: PropTypes.func.isRequired,
+    movieSearch: PropTypes.string.isRequired,
+    filterYear: PropTypes.string.isRequired,
+    handleMovieInput: PropTypes.func.isRequired,
+    handleYearInput: PropTypes.func.isRequired,
 };
-
 
 export default Filters;
