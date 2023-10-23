@@ -6,11 +6,13 @@ import '../../styles/layout/movieItem.scss';
 
 const MovieSceneItem = ({ item }) => {
   return (
-    <Link className="movie" to={`/movie/${item.id}`}>
-      <img className="movie__img" src={item.poster} alt={`${item.movie} poster`} />
-      <h2>{item.movie}</h2>
-      <p>{item.fullLine}</p>
-      <p>{item.year.toString()}</p>
+    <Link className="link" to={`/movie/${item.id}`}>
+      <div className='movie'>
+        <img className="movie__img" src={item.poster} alt={`${item.movie} poster`} />
+        <h2 className='movie__title'>{item.movie}</h2>
+        <p className='movie__quote'>{item.fullLine}</p>
+        <p className='movie__year'>{item.year.toString()}</p>
+      </div>
     </Link>
   );
 };

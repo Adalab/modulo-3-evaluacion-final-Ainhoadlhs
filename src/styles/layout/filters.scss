@@ -1,0 +1,46 @@
+@import '../core/mixins.scss';
+@import '../core/variables.scss';
+
+.main{
+    background-color: #9ff1ff;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-inline: 1.5rem;
+        @include tablet {
+        flex-direction: row;
+        justify-content: center;
+        padding-top: 4rem;
+        padding-bottom: 5rem;
+    }
+    
+}
+.label {
+    @include textStyle($tilt, 1.5rem, $white);
+    @include textGlow($black2);
+    @include tablet {
+        @include textStyle($tilt, 3rem, $white);
+    }
+}
+
+.select {
+    width: 10rem;
+    border-radius: 1rem;
+    border: solid 2px #0f4475;
+}
+.input{
+    width: 30rem;
+    border-radius: 1rem;
+    border: solid 2px #0f4475;
+}
+.input::placeholder{
+    padding-left: 1rem;
+    font-size: 1rem;
+    @include tablet{
+        font-size: 2rem; 
+    }
+}

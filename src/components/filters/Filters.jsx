@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import FilterByMovie from './FilterByMovie';
 import FilterByYear from './FilterByYear';
+import '../../styles/layout/filters.scss';
 
 const Filters = ({getYear, movieSearch, filterYear, handleMovieInput, handleYearInput}) => {
     const handleSubmit = (ev) => {

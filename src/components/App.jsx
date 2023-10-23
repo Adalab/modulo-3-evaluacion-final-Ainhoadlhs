@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, matchPath, Link } from 'react-router-dom';
 import LocalStorage from '../services/LocalStorage';
-import Header from './Header';
 import Filters from './filters/Filters';
 import MovieSceneList from './scenes/MovieSceneList';
 import MovieSceneDetail from './scenes/MovieSceneDetail';
 import getDataFromAPI from '../services/Fetch';
+import { BsFillArrowLeftCircleFill } from 'react-icons/bs';
+
+import '../styles/layout/Header.scss';
 
 function App() {
   const [movieData, setMovieData] = useState(LocalStorage.get('movies') || []);
@@ -52,7 +54,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <header className="header"></header>
       <main className='main'>
         <Routes>
           <Route path='/' element={
@@ -73,7 +75,7 @@ function App() {
               {clickedMovie ? (
                 <>
                   <MovieSceneDetail item={clickedMovie} />
-                  <Link to="/">Back</Link>
+                  <Link to="/" className='linkBack'><BsFillArrowLeftCircleFill /></Link>
                 </>
               ) : ( <div>Not found</div> 
               )}

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import '../../styles/layout/filters.scss';
 
 const FilterByMovie = ({ movieSearch, handleMovieInput }) => {
     const handleMovie = (ev) => {
@@ -10,7 +11,7 @@ const FilterByMovie = ({ movieSearch, handleMovieInput }) => {
                 Movie
             </label>
             <input
-                className="input__movie"
+                className="input"
                 type="text"
                 name="movie"
                 id="movie"

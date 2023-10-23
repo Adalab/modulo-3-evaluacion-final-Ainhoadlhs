@@ -1,6 +1,10 @@
+@import '../core/mixins.scss';
+@import '../core/variables.scss';
 
 .header {
-    &__title{
-        font-size: 50px;
-    }
+background-image: url("./src/images/finalcut.jpg");
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+height: 60vh;
 }

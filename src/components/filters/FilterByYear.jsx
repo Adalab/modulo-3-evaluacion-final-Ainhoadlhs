@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import '../../styles/layout/filters.scss';
 
 const FilterByYear = ({ years, handleYearInput, filterYear }) => {
     const handleMovieInput = (ev) => {

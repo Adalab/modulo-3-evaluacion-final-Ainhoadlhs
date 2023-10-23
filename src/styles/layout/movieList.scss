@@ -1,13 +1,26 @@
+@import '../core/mixins.scss';
+@import '../core/variables.scss';
+
 .movie {
     &__message{
         &--notFound{
-            font-size: 1.5rem;
-            color: red;
+            @include textStyle($tilt, 1.5rem, $red);
+            text-align: center;
+            @include tablet{
+                @include textStyle($tilt, 2.5rem, $red);
+            }
         }
     }
     &__list {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 4rem;
+        @include tablet {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
     }
 }
