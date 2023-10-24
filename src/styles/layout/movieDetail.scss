@@ -9,17 +9,22 @@
 
 .imagendetail{
     width: 15rem;
+    border-radius: 10px;
+    border: solid 2px #0f4475;
+    margin-top: 1rem;
     @include tablet{
-        width: 200px;
+        width: 20rem;
         border-radius: 10px;
         border: solid 2px #0f4475;
-        margin-top: 2rem;
+    }
+    @include desktop{
+        width: 25rem;
     }
 }
 
 .movies {
     width: 20rem;
-    height: 35rem;
+    height: 40rem;
     border: solid 0.2rem #0f4475;
     border-radius: 1.5rem;
     display: flex;
@@ -36,38 +41,41 @@
         flex-direction: row;
         justify-content: center;
     }
+    @include desktop{
+        width: 90rem;
+        height: 45rem;
+    }
     &__img{
         width: 15rem;
         border-radius: 10px;
         border: solid 1px #0f4475;
-        margin-top: 3rem;
         @include tablet{
             width: 200px;
-            border-radius: 10px;
+            border-radius: 10px;    
             border: solid 2px #0f4475;
-            margin-top: 2rem;
         }
     }
 
     &__title{
         @include textStyle($tilt, 2rem, $white);
-        padding-top: 2rem;
+        padding-top: 0.5rem;
         @include tablet{
-            @include textStyle($tilt, 2rem, $white);
+            @include textStyle($tilt, 3.5rem, $white);
+            padding-top: 2rem;
         }
     }
     &__quote{
         @include textStyle($tilt, 1rem, $white);
         padding-top: 2rem;
         @include tablet{
-            @include textStyle($tilt, 1.5rem, $white);
+            @include textStyle($tilt, 3rem, $white);
         }
     }
     &__year{
         @include textStyle($tilt, 1rem, $white);
         padding-top: 2rem;
         @include tablet{
-            @include textStyle($tilt, 1.5rem, $white);
+            @include textStyle($tilt, 3rem, $white);
         }
     }
     &__director {
@@ -75,14 +83,14 @@
         padding-top: 2rem;
         padding-bottom: 2rem;
         @include tablet{
-            @include textStyle($tilt, 1.5rem, $white);
+            @include textStyle($tilt, 3rem, $white);
         }
     }
     &__audio{
         @include textStyle($tilt, 1rem, $white);
         padding-top: 2rem;
         @include tablet{
-            @include textStyle($tilt, 1.5rem, $white);
+            @include textStyle($tilt, 3rem, $white);
         } 
     }
 }
@@ -102,3 +110,13 @@
     padding: 10px 20px;
     border-radius: 5px;
   }
+
+.notFound{
+    @include textStyle($tilt, 1.5rem, $red);
+    text-align: center;
+    padding-top: 5rem;
+    padding-bottom: 100vh;
+    @include tablet{
+        @include textStyle($tilt, 5rem, $red);
+    }
+}

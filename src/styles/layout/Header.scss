@@ -2,9 +2,12 @@
 @import '../core/variables.scss';
 
 .header {
-background-image: url("../images/finalcut.jpg");
+background-image: url("../images/owen.jpg");
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
 height: 60vh;
+    @include tablet{
+        background-image: url("../images/finalcut.jpg");
+    }
 }

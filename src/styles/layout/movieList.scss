@@ -6,6 +6,7 @@
         &--notFound{
             @include textStyle($tilt, 1.5rem, $red);
             text-align: center;
+            padding-bottom: 100vh;
             @include tablet{
                 @include textStyle($tilt, 2.5rem, $red);
             }

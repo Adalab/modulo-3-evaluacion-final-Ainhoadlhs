@@ -77,7 +77,9 @@ function App() {
                   <MovieSceneDetail item={clickedMovie} />
                   <Link to="/" className='linkBack'><BsFillArrowLeftCircleFill /></Link>
                 </>
-              ) : ( <div>Not found</div> 
+              ) : ( <div className='notFound'>The scene you are looking for does not exist.
+                    <Link to="/" className='linkBack'><BsFillArrowLeftCircleFill /></Link>              
+              </div> 
               )}
                 </>
             }

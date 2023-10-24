@@ -5,7 +5,7 @@ import '../../styles/layout/movieList.scss'
 
 const MovieSceneList = (props) => {
     if (props.movies.length === 0) {
-        return <p className="movie__message--notFound">No movie matches. Try again!</p>;
+        return <p className="movie__message--notFound">There is no movie called "{props.movieValue}". Try again!</p>;
     } else {
         const movieInfo = props.movies.map((item) =>{
             return (
@@ -20,7 +20,7 @@ const MovieSceneList = (props) => {
 
 MovieSceneList.propTypes = {
     movies: PropTypes.array.isRequired,
-    movieSearch: PropTypes.string,
+    movieSearch: PropTypes.string,  
 };
 
 export default MovieSceneList;
